@@ -30,12 +30,12 @@ get '/logout' do
 end
 
 ## does not throw UI error if username does not exist. Yet.
-get '/users/:username' do
+get '/users/:username/?' do
   user = User.find_by_username(params[:username])
   if  (user.private? && !current_user) || 
       (user.private? && current_user != user && !current_user.is_contact?(user)) || 
       (current_user && current_user.is_blocked?(user))
-    erb :error
+    erb :error_b
   elsif   !user.private? || 
           current_user == user || 
           current_user.is_contact?(user)

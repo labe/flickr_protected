@@ -1,39 +1,24 @@
-DBc default Sinatra skeleton with BONUS FEATURES:
-
-* rake db:yolo
-* rake db:fuckit
-* rake db:console
-
-* BCrypt
-* Faker
-
-* user_helper.rb // current_user method to check login state
+TO IMPLEMENT:
+* Error page for /users/:username when :username does not exist
+* Ability to "approve" being added as someone's contact? (friends vs followers models)
+* auto populate User name fields on /settings for real-time "That user does not exist :(" notification
 
 
-helpful things to include in User model:
+<<<<<<<<<<<<<<<<<< more notes!
 
-  validates :name, :length => { :minimum => 3, :message => "must be at least 3 characters, fool!" }, :uniqueness => true
-  validates :email, :uniqueness => true, :format => /\w+@\w+\.\w{2,3}/ 
+User can:
 
-  include BCrypt
+* Make account private
+* Add contacts
+* Block users
+* See which users they've added as contacts
+* See which users they've blocked
+* See who has added them as a user
 
-  def password
-    @password ||= Password.new(password_hash)
-  end
 
-  def password=(pass)
-    @password = Password.create(pass)
-    self.password_hash = @password
-  end
-  
-  def self.create(params={})
-    @user = User.new(:email => params[:email], :name => params[:name])
-    @user.password = params[:password]
-    @user.save!
-    @user
-  end
+If user1's account is private
+* Only logged in users who have been added as a contact can view that user's profile page or albums
 
-  def self.authenticate(params)
-    user = User.find_by_name(params[:name])
-    (user && user.password == params[:password]) ? user : nil
-  end
+If user1's account is public
+* Anyone can view user1's profile page and albums, unless they have been blocked by user1
+
