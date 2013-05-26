@@ -1,0 +1,10 @@
+ <div class="carousel">
+    <ul class="frames">
+      <% album.photos.each do |photo| %>
+      <li>
+        <h2><%= photo.name %></h2>
+        <img src="<%= photo.file.url %>" />
+      </li>
+      <% end %>
+    </ul>
+  </div>

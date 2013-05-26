@@ -1,3 +1,3 @@
 def current_user
-  User.where(:id => session[:user_id]).first
+  User.where(:username => session[:username]).first
 end

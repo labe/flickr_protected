@@ -1,0 +1,57 @@
+<form name="settings" method="POST" action="/users/<%= current_user.username %>/settings/privacy">
+	<h3>Privacy settings</h3>
+	<h4>Your account is currently: <%= current_user.private ? "Private" : "Public" %></h4>
+	<h4>Change account privacy:</h4>
+	<select name="privacy">
+		<option value="false" default>Public</option>
+		<option value="true" default>Private</option>
+	</select>
+	<button name="submit">DO MY BIDDING</button>
+</form>
+
+<form id="add_contact" method="POST" action="/users/<%= current_user.username %>/settings/add_contact">
+	<h3>Add a contact!</h3>
+	<label for="contact">User: </label>
+	<input type="text" name="contact" placeholder="Enter a username or email address">
+	<button name="submit">HIT ME</button>
+</form>
+
+<% if errors %>
+  <div id="errors">
+    <p><%= errors %></p>
+  </div>
+<% end %>
+
+<% if UserContact.where(:user_id => user.id, :blocked => false).any? %>
+<h4> Contacts: </h4>
+<ul>
+	<% UserContact.where(:user_id => user.id, :blocked => false).each do |relation| %>
+	<li><a href="/users/<%= relation.contact.username %>"><%= relation.contact.username %></a></li>
+	<% end %>
+</ul>
+<% end %>
+
+<% if user.users.any? %>
+<h4> People who have added you as a contact: </h4>
+<ul>
+	<% user.users.each do |user| %>
+	<li><a href="/users/<%= user.username %>"><%= user.username %></a></li>
+	<% end %>
+</ul>
+<% end %>
+
+<form id="block_user" method="POST" action="/users/<%= current_user.username %>/settings/block_user">
+	<h3>Block a user</h3>
+	<label for="user">User: </label>
+	<input type="text" name="user" placeholder="Enter a username or email address">
+	<button name="submit">HIT ME</button>
+</form>
+
+<% if UserContact.where(:user_id => user.id, :blocked => true).any? %>
+<h4> Users you have blocked: </h4>
+<ul>
+	<% UserContact.where(:user_id => user.id, :blocked => true).each do |block| %>
+	<li><a href="/users/<%= block.contact.username %>"><%= block.contact.username %></a></li>
+	<% end %>
+</ul>
+<% end %>

@@ -1,4 +1,5 @@
 get '/' do
-  # Look in app/views/index.erb
+	session[:last_page] = '/'
   erb :index
 end
+

@@ -18,6 +18,16 @@
   <title></title>
 </head>
 <body>
+  <div class="header">
+    <h5 class="home"><a href="/">Home</a></h5>
+    <% if current_user %>
+    <h5><a href='/logout'>Logout</a></h5>
+    <h5>Signed in as: <a href="/users/<%= current_user.username %>"><%= current_user.username %></a></h5>
+    <h5><a href="/users/<%= current_user.username %>/settings">Settings</a></h5>
+    <% else %>
+    <h5><a href="/login">Login</a></h5>
+    <% end %>
+  </div>
   <div class="container">
       <%= yield %>
   </div>

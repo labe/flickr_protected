@@ -7,3 +7,23 @@
 th {
   text-align: left;
 }
+
+.header {
+	padding: 10px;
+	height: 30px;
+}
+
+.header h5 {
+	display: inline-block;
+	float:right;
+	margin: 0 10px;
+}
+
+.header h5.home {
+	float:left;
+}
+
+#add_contact input[type=text], #block_user input[type=text] {
+	width: 300px;
+	margin-right: 10px;
+}

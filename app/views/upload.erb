@@ -1,0 +1,12 @@
+<h3>Create a new photo album!</h3>
+
+<form id="upload" method="POST" action='/publish' enctype="multipart/form-data">
+<label for="album[name]">Album Name: </label>
+<input type="text" name="album[name]" autofocus><br />
+<label for="album[description]">Description (optional): </label>
+<input type="text" name="album[description]"><br />
+
+<input type="file" name="photo[image1]"><br />
+<button name="add_file">Add another photo!</button><br />
+<input type="submit" value="GO GREASED LIGHTNING">
+</form>
