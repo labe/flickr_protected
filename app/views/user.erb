@@ -1,4 +1,9 @@
-<h3><%= user.username %>'s profile page!</h3>
+<div id="profile_header">
+<h3 class="add_contact"><%= user.username %>'s profile page!</h3>
+<% if current_user != user && !current_user.contacts.include?(user) %>
+<h5 class="add_contact"><a href="/users/<%= user.username%>/add_as_contact">Add to contacts</a></h5>
+<% end %>
+</div>
 
 <h4>This is a user profile page. If this user has privacy settings enabled, only the user's non-blocked contacts can see this page.</h4>
 

@@ -3,7 +3,6 @@ TO IMPLEMENT:
 * Ability to "approve" being added as someone's contact? (friends vs followers models)
 * auto populate User name fields on /settings for real-time "That user does not exist :(" notification
 
-
 <<<<<<<<<<<<<<<<<< more notes!
 
 User can:

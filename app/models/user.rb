@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   has_many  :is_a_contacts, :class_name => "UserContact", :foreign_key => :contact_id
   has_many  :users, :through => :is_a_contacts, :foreign_key => :user_id
 
-	validates :username, :presence => true, :length => { :minimum => 3, :message => "must be at least 3 characters, fool!" }, :uniqueness => true
+	validates :username, :presence => true, :length => { :minimum => 3, 
+            :message => "must be at least 3 characters, fool!" }, :uniqueness => true
   validates :email, :presence => true, :format => {:with =>  /\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3}/},
             :uniqueness => true
 
@@ -49,5 +50,8 @@ class User < ActiveRecord::Base
     return UserContact.where(:user_id => user.id, :contact_id => self.id).first.blocked if UserContact.where(:user_id => user.id, :contact_id => self.id).any?
   end
 
+  def add_contact
+    
+  end
 
 end

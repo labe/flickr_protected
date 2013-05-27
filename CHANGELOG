@@ -1,0 +1,8 @@
+* applied sloppy CSS to home page "Create album" link
+* fixed bug on user settings page that showed users who had blocked them
+* added nonfunctional "add contact" link to user profile page that only shows if 
+	1. user != current user, 2. current user has not already added user as contact
+* added "pending" column to user_contacts table in prep for anticipated "add_contact approval" feature
+* added scripts to layout.erb in anticipation of using jQuery UI
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

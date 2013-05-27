@@ -51,6 +51,11 @@ get '/users/:username/settings/?' do
   end
 end
 
+# remember to change this. or don't, whatever.
+get '/users/:username/add_as_contact' do
+  "DIAL IT BACK, KID. Implement this later when you've figured out how to refactor your code explosion."
+end
+
 post '/users/:username/settings/privacy' do
   if current_user == User.find_by_username(params[:username])
     params[:privacy] == "true" && current_user.private == false ? User.update(current_user.id, :private => true) : User.update(current_user.id, :private => false) 
@@ -61,16 +66,8 @@ post '/users/:username/settings/privacy' do
 end
 
 post '/users/:username/settings/add_contact' do
-  if current_user == User.find_by_username(params[:username])
-    if contact = User.find_by_username(params[:contact]) || contact = User.find_by_email(params[:contact])
-      current_user.contacts << contact
-      redirect "/users/#{current_user.username}/settings"
-    else
-      erb :user_settings, :locals => {:user => User.find_by_username(params[:username]), :errors => "User cannot be found :("}
-    end
-  else
-    erb :error
-  end
+  current_user.add_contact
+  erb :user_settings, :locals => {:user => User.find_by_username(params[:username]), :errors => "User cannot be found :("}
 end
 
 post '/users/:username/settings/block_user' do
