@@ -93,8 +93,8 @@ namespace :db do
   end
 
   desc "Drop the database at #{DB_NAME}"
-  task :drop do
-    puts "Dropping database #{DB_NAME}..."
+  task :dubstep do
+    puts "WUB WUB WUB WUB\nDropping the database #{DB_NAME}..."
     system("dropdb #{DB_NAME}")
   end
 
@@ -113,7 +113,7 @@ namespace :db do
   end
 
   desc "Drop, create, migrate and seed the database"
-  task :fuckit => [:drop, :create, :migrate, :seed] do
+  task :fuckit => [:dubstep, :create, :migrate, :seed] do
     puts "Reset complete!"
   end
 
@@ -140,5 +140,10 @@ end
 
 desc "Run the specs"
 RSpec::Core::RakeTask.new(:spec)
+
+desc "Putain bordel de merde, fils de pute va te faire foutre"
+task "fuckyou" do
+  require APP_ROOT.join('config','helper.rb')
+end
 
 task :default  => :specs

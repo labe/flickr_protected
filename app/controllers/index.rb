@@ -9,5 +9,5 @@ end
 
 post '/auto' do
 	users = User.all.map { |user| user.username }
-	return '["pickles"]'
+	return users.to_json
 end
